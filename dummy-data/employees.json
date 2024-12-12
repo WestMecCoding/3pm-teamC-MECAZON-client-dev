@@ -1,0 +1,24 @@
+[
+  {
+    "name":"Jose",
+    "email":"jose.johnathan@gmail.com",
+    "address":" 57492 lincoln lane",
+    "department":"production",
+    "picture":"",
+    "phoneNumber":"661-xxx-xxx9",
+    "password":"1234",
+    "isAdmin":false,
+    "adminKey":""
+  },
+    {
+      "name": "Rafael",
+      "email": "raphael.michelangelo@gmail.com",
+      "address": " 57492 lincoln lane",
+      "department": "product marketing",
+      "picture": "",
+      "phoneNumber": "303-xxx-xxx1",
+      "password": "4321",
+      "isAdmin": false,
+      "adminKey": ""
+    }
+]

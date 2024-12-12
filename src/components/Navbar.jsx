@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className={styles.nav}>
       <Link to="/">Home</Link>
-      <Link to="/groceries">Groceries</Link>
+      <Link to="/employees">Employees</Link>
     </nav>
   );
 }
