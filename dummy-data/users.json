@@ -1,7 +1,8 @@
 [
     {
-        "id":"",
-        "name":"",
-        "address":""
+        "name":"randy",
+        "email":"randal@rad.com",
+        "password": "54321",
+        "location": "alabama"
     }
 ]
