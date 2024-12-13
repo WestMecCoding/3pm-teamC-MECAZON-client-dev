@@ -44,10 +44,14 @@ export default function EmployeeList() {
       <table>
         <thead>
           <tr>
+            <th>Employee ID</th>
             <th>Name</th>
+            <th>Picture</th>
             <th>Department</th>
             <th>Email</th>
             <th>Phone Number</th>
+            <th>Address</th>
+            <th>Hours</th>
           </tr>
         </thead>
         <tbody>
@@ -55,9 +59,12 @@ export default function EmployeeList() {
             return (
               <tr key={index}>
                 <td>{row.name}</td>
+                <td>{row.picture}</td>
                 <td>{row.department}</td>
                 <td>{row.email}</td>
                 <td>{row.phoneNumber}</td>
+                <td>{row.address}</td>
+                <td>{row.hours}</td>
               </tr>
             );
           })}
