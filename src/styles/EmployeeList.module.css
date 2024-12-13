@@ -1,6 +1,14 @@
 /* EmployeeList.module.css */
-
+body {
+  margin: 0;
+  padding: 0;
+}
 /* Table styles */
+.employee-wrapper {
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -28,12 +36,18 @@ tr:nth-child(even) td {
   background-color: #f9f9f9;
 }
 
-/* Header and title */
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+/* Header */
+h1 {
+  text-align: left;
+}
+.employee-header {
+ display: flex;
+ justify-content: space-evenly;
+ align-items: center;
+}
+.add-employee button{
+  text-align: right;
+  background-color: #508aa5;
 }
 
 /* Responsive Styles */

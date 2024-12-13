@@ -26,7 +26,7 @@ export default function Employees() {
   }, [employees]);
   return (
     <div>
-      <h1>Employees</h1>
+      {/* <h1>Employees</h1> */}
       <EmployeeEditor />
       <EmployeeList items={employees} />
     </div>
