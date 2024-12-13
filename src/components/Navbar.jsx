@@ -13,7 +13,7 @@ export default function Navbar() {
             height="35px"
             width="35px"
           />
-          <p>MECAZON</p>
+          <p>EMPLOYEE HUB</p>
         </Link>
       </div>
 

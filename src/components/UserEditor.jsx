@@ -2,7 +2,9 @@ export default function UserEditor() {
   return (
     <>
       <h1>User Editor</h1>
-      <form id="updateUser" className="user-form">
+      <form id="createUser" className="user-form">
+        <label htmlFor="username">Username</label>
+        <input type="text" name="username" />
       </form>
     </>
   );
