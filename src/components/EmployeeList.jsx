@@ -39,9 +39,13 @@ export default function EmployeeList() {
   ];
 
   return (
-    <div>
-      <h2>Employee</h2>
-      <table>
+    <div className={styles["employee-wrapper"]}>
+      <div className={styles["employee-header"]}>
+        <h1>Employees</h1>
+        {/* search bar component */}
+        <button className={styles["add-employee"]}>Add Employee</button>
+      </div>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Employee ID</th>
@@ -58,6 +62,7 @@ export default function EmployeeList() {
           {data.map((row, index) => {
             return (
               <tr key={index}>
+                <td>{row.id}</td>
                 <td>{row.name}</td>
                 <td>{row.picture}</td>
                 <td>{row.department}</td>
