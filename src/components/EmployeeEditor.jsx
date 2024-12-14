@@ -23,6 +23,7 @@ export default function EmployeeEditor() {
         <input type="text" name="phoneNumber" />
         <label htmlFor="address">Address:</label>
         <input type="text" name="address" />
+        
       </form>
     </>
   );
