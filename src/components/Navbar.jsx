@@ -17,11 +17,16 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className={styles.col}>
+      <div className={styles.info}>
+        <p>Employee Info</p>
+        <p>Customer Info</p>
+      </div>
+
+      {/* <div className={styles.col}>
         <Link to="/groceries">
           <Search></Search>
         </Link>
-      </div>
+      </div> */}
 
       <div className={`${styles.col} ${styles.userButtons}`}>
         <Link className={styles.loginLink} to="/login">
@@ -32,15 +37,6 @@ export default function Navbar() {
             height="30px"
             width="30px"
             alt="user account icon"
-          />
-        </Link>
-
-        <Link className={styles.cartLink} to="/cart">
-          <img
-            src="/cart_icon.svg"
-            alt="shopping cart icon"
-            height="50px"
-            width="50px"
           />
         </Link>
       </div>

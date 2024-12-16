@@ -43,8 +43,9 @@ export default function EmployeeList() {
       <div className={styles["employee-header"]}>
         <h1>Employees</h1>
         {/* search bar component */}
-        <button className={styles["add-employee"]}>Add Employee</button>
+        {/* <Search></Search> */}
       </div>
+      <button className={styles["add-employee"]}>Add Employee</button>
       <table className={styles.table}>
         <thead>
           <tr>

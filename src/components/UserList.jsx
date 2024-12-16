@@ -14,8 +14,9 @@ export default function UserList() {
 
   return (
     <div>
-      <h2>User</h2>
-      <table>
+      {/* <h2>User</h2> */}
+      <button className={styles["add-user"]}>Add User</button>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Name</th>
