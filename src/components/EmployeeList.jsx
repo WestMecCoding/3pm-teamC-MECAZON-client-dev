@@ -1,29 +1,44 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/EmployeeList.module.css";
 import axios from "axios";
-// import fetchEmployees from "../pages/Employees";
 
 export default function EmployeeList() {
-  const [employees, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState([]); // State to hold employee data
+  const [loading, setLoading] = useState(true); // State for loading indicator
+  const [error, setError] = useState(null); // State for error handling
+
   useEffect(() => {
     async function fetchEmployees() {
       try {
-        const response = await axios.get("http://localhost:3000/api/employees");
+        const response = await axios.get(
+          "http://localhost:3000/find/MECAZONDB/Employees"
+        );
 
-        // set the state of the employee to the response.data
         setEmployees(response.data);
+        setLoading(false);
       } catch (err) {
-        console.error("something went wrong fetching employees", err);
+        console.error("Error fetching employees:", err);
+        setError("Something went wrong fetching employees.");
+        setLoading(false);
       }
     }
+
     fetchEmployees();
-  }, []);
+  }, []); // Fetch employees when the component mounts
+
+  // Display loading or error messages if necessary
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className={styles["employee-wrapper"]}>
       <div className={styles["employee-header"]}>
         <h1>Employees</h1>
-        {/* search bar component */}
         <button className={styles["add-employee"]}>Add Employee</button>
       </div>
       <table className={styles.table}>
@@ -31,7 +46,7 @@ export default function EmployeeList() {
           <tr>
             <th>Employee ID</th>
             <th>Name</th>
-            <th>Picture</th>
+            {/* <th>Picture</th> */}
             <th>Department</th>
             <th>Email</th>
             <th>Phone Number</th>
@@ -40,17 +55,19 @@ export default function EmployeeList() {
           </tr>
         </thead>
         <tbody>
-          {employees.map((row, index) => {
+          {employees.map((employee, index) => {
             return (
               <tr key={index}>
-                <td>{row.id}</td>
-                <td>{row.name}</td>
-                <td>{row.picture}</td>
-                <td>{row.department}</td>
-                <td>{row.email}</td>
-                <td>{row.phoneNumber}</td>
-                <td>{`${row.location.address}, ${row.location.city}, ${row.location.zipcode}`}</td>
-                <td>{row.hours}</td>
+                {/* Display employee data with optional chaining */}
+                <td>{employee.id || "N/A"}</td>
+                <td>
+                  {employee.name?.first_name} {employee.name?.last_name}
+                </td>
+                <td>{employee.department || "N/A"}</td>
+                <td>{employee.contact_info?.email || "N/A"}</td>
+                <td>{employee.contact_info?.phone_number || "N/A"}</td>
+                <td>{employee.contact_info?.address || "N/A"}</td>
+                <td>{employee.date_hired || "N/A"}</td>
               </tr>
             );
           })}
