@@ -1,42 +1,23 @@
+import { useState, useEffect } from "react";
 import styles from "../styles/EmployeeList.module.css";
-import React from "react";
+import axios from "axios";
+// import fetchEmployees from "../pages/Employees";
 
 export default function EmployeeList() {
-  const columns = ["name", "department", "email", "phone number"];
-  const data = [
-    {
-      name: "Jose",
-      department: "finance",
-      email: "jose.jones@finance.com",
-      phoneNumber: "818-xxx-xxx7",
-      location: {
-        address: "3421 Birch Avenue",
-        city: "Phoenix",
-        zipcode: "35268",
-      },
-      hours: "full-time",
-      picture: "",
-      password: "emily2024",
-      isAdmin: false,
-      adminKey: "",
-    },
-    {
-      name: "David",
-      department: "marketing",
-      email: "david.brown@marketing.com",
-      phoneNumber: "626-xxx-xxx3",
-      location: {
-        address: "1234 Maple Road",
-        city: "Los Angeles",
-        zipcode: "90001",
-      },
-      hours: "part-time",
-      picture: "",
-      password: "marketing123",
-      isAdmin: false,
-      adminKey: "",
-    },
-  ];
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    async function fetchEmployees() {
+      try {
+        const response = await axios.get("http://localhost:3000/api/employees");
+
+        // set the state of the employee to the response.data
+        setEmployees(response.data);
+      } catch (err) {
+        console.error("something went wrong fetching employees", err);
+      }
+    }
+    fetchEmployees();
+  }, []);
 
   return (
     <div className={styles["employee-wrapper"]}>
@@ -59,7 +40,7 @@ export default function EmployeeList() {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => {
+          {employees.map((row, index) => {
             return (
               <tr key={index}>
                 <td>{row.id}</td>
@@ -68,7 +49,7 @@ export default function EmployeeList() {
                 <td>{row.department}</td>
                 <td>{row.email}</td>
                 <td>{row.phoneNumber}</td>
-                <td>{row.address}</td>
+                <td>{`${row.location.address}, ${row.location.city}, ${row.location.zipcode}`}</td>
                 <td>{row.hours}</td>
               </tr>
             );
