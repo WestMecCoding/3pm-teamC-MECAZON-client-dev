@@ -1,17 +1,22 @@
-.list {
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* .list {
   display: flex;
   flex-wrap: wrap;
   padding: auto;
-}
+} */
 
-.item {
+/* .item {
   border: 1px solid #ddd;
   padding: 1rem;
   margin: 0.5rem;
   width: calc(30% - 1rem);
   border-radius: 10%;
   background-color: lightcoral;
-}
+} */
 
 /* Table */
 .table {
@@ -39,6 +44,11 @@ tr:nth-child(even) td {
   background-color: #f9f9f9;
 }
 
+h1 {
+  text-align: left;
+  padding: 2rem 0 0 0;
+  /* float: left; */
+}
 /* Button */
 .add-user {
   /* text-align: right; */

@@ -5,6 +5,8 @@ import UserEditor from "../components/UserEditor";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
+  const [showEditor, setShowEditor] = useState(false);
+
   useEffect(() => {
     async function fetchUsers() {
       try {
@@ -22,13 +24,29 @@ export default function Users() {
   useEffect(() => {
     // console.log(users);
     sessionStorage.setItem("users", JSON.stringify(users));
-    console.log(JSON.parse(sessionStorage.getItem("users")));
   }, [users]);
+
+  const addUser = (userData) => {
+    setUsers((prevUsers) => [
+      ...prevUsers,
+      { id: prevUsers.length + 1, ...userData }, // Add a new user with an id
+    ]);
+    setShowEditor(false); // Close the editor after adding user
+  };
+  
   return (
     <div>
-      <h1>Users</h1>
-      <UserEditor />
-      <UserList items={users} />
+      {showEditor && (
+        <UserEditor
+          onClose={() => setShowEditor(false)} // Pass the function to close the editor
+          onAddUser={addUser} // Pass the function to add the user
+        />
+      )}
+
+      <UserList
+        items={users} // Pass the users array to UserList
+        onShowEditor={() => setShowEditor(true)} // Show the editor when Add User is clicked
+      />
     </div>
   );
 }

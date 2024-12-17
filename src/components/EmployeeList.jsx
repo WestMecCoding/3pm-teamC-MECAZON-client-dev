@@ -1,42 +1,8 @@
 import styles from "../styles/EmployeeList.module.css";
 import React from "react";
 
-export default function EmployeeList() {
+export default function EmployeeList({items, onShowEditor}) {
   const columns = ["name", "department", "email", "phone number"];
-  const data = [
-    {
-      name: "Jose",
-      department: "finance",
-      email: "jose.jones@finance.com",
-      phoneNumber: "818-xxx-xxx7",
-      location: {
-        address: "3421 Birch Avenue",
-        city: "Phoenix",
-        zipcode: "35268",
-      },
-      hours: "full-time",
-      picture: "",
-      password: "emily2024",
-      isAdmin: false,
-      adminKey: "",
-    },
-    {
-      name: "David",
-      department: "marketing",
-      email: "david.brown@marketing.com",
-      phoneNumber: "626-xxx-xxx3",
-      location: {
-        address: "1234 Maple Road",
-        city: "Los Angeles",
-        zipcode: "90001",
-      },
-      hours: "part-time",
-      picture: "",
-      password: "marketing123",
-      isAdmin: false,
-      adminKey: "",
-    },
-  ];
 
   return (
     <div className={styles["employee-wrapper"]}>
@@ -45,7 +11,9 @@ export default function EmployeeList() {
         {/* search bar component */}
         {/* <Search></Search> */}
       </div>
-      <button className={styles["add-employee"]}>Add Employee</button>
+
+      <button className={styles["add-employee"]} onClick={onShowEditor}>Add Employee</button>
+
       <table className={styles.table}>
         <thead>
           <tr>
@@ -60,17 +28,17 @@ export default function EmployeeList() {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => {
+          {items.map((employee, index) => {
             return (
               <tr key={index}>
-                <td>{row.id}</td>
-                <td>{row.name}</td>
-                <td>{row.picture}</td>
-                <td>{row.department}</td>
-                <td>{row.email}</td>
-                <td>{row.phoneNumber}</td>
-                <td>{row.address}</td>
-                <td>{row.hours}</td>
+                <td>{employee.id}</td>
+                <td>{employee.firstName} {employee.lastName}</td>
+                <td>{employee.picture || "N/A"}</td>
+                <td>{employee.department}</td>
+                <td>{employee.email}</td>
+                <td>{employee.phoneNumber}</td>
+                <td>{employee.address}</td>
+                <td>{employee.hours || "N/A"}</td>
               </tr>
             );
           })}

@@ -1,21 +1,12 @@
 import styles from "../styles/UserList.module.css";
 import React from "react";
 
-export default function UserList() {
-  const columns = ["name", "department", "email", "phone number"];
-  const data = [
-    {
-      name: "randy",
-      email: "randal@rad.com",
-      password: "54321",
-      location: "alabama",
-    },
-  ];
+export default function UserList({items, onShowEditor}) {
 
   return (
     <div>
-      {/* <h2>User</h2> */}
-      <button className={styles["add-user"]}>Add User</button>
+      <h1>User</h1>
+      <button className={styles["add-user"]} onClick={onShowEditor}>Add User</button>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -26,13 +17,13 @@ export default function UserList() {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => {
+          {items.map((user, index) => {
             return (
               <tr key={index}>
-                <td>{row.name}</td>
-                <td>{row.email}</td>
-                <td>{row.password}</td>
-                <td>{row.location}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.password}</td>
+                <td>{user.location}</td>
               </tr>
             );
           })}

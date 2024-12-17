@@ -4,11 +4,6 @@ body {
   padding: 0;
 }
 /* Table styles */
-/* .employee-wrapper {
-  width: 100%;
-  padding: 40px 0 0 20px;
-  box-sizing: border-box;
-} */
 .table {
   width: 100%;
   border-collapse: collapse;

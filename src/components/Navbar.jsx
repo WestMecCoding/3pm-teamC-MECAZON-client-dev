@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Search from "../components/Search";
 import styles from "../styles/Navbar.module.css";
-export default function Navbar() {
+export default function Navbar({setSearchValue}) {
   return (
     <nav className={styles.nav}>
       <div className={`${styles.col} ${styles.brand}`}>
@@ -18,14 +18,16 @@ export default function Navbar() {
       </div>
 
       <div className={styles.info}>
-        <p>Employee Info</p>
-        <p>Customer Info</p>
+        <Link to="/employees">
+          <p>Employee Info</p>
+        </Link>
+        <Link to="users">
+          <p>Customer Info</p>
+        </Link>
       </div>
 
       {/* <div className={styles.col}>
-        <Link to="/groceries">
           <Search></Search>
-        </Link>
       </div> */}
 
       <div className={`${styles.col} ${styles.userButtons}`}>
