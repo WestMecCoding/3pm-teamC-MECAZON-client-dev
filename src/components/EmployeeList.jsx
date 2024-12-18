@@ -46,7 +46,6 @@ export default function EmployeeList() {
           <tr>
             <th>Employee ID</th>
             <th>Name</th>
-            {/* <th>Picture</th> */}
             <th>Department</th>
             <th>Email</th>
             <th>Phone Number</th>
@@ -59,7 +58,7 @@ export default function EmployeeList() {
             return (
               <tr key={index}>
                 {/* Display employee data with optional chaining */}
-                <td>{employee.id || "N/A"}</td>
+                <td>{employee._id || "N/A"}</td>
                 <td>
                   {employee.name?.first_name} {employee.name?.last_name}
                 </td>

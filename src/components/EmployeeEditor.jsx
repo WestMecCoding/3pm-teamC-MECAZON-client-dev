@@ -2,30 +2,34 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function EmployeeEditor() {
-  const [employees, setEmployees] = useState([]); // Assuming you have a list of employees state here
   const [deleteId, setDeleteId] = useState(""); // To capture the ID of the employee to delete
 
   const deleteEmployee = async (event) => {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     if (!deleteId) {
       console.error("No employee ID provided.");
       return;
     }
 
-    try {
-      // Make a DELETE request to the backend API
-      await axios.delete(`http://localhost:5000/api/employees/${deleteId}`);
+    console.log("Attempting to delete employee with ID:", deleteId); // Log deleteId
 
-      // Update state to reflect deletion
-      setEmployees((prevEmployees) =>
-        prevEmployees.filter((employee) => employee.id !== parseInt(deleteId))
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/delete/MECAZONDB/Employees/${deleteId}`
       );
-      setDeleteId(""); // Clear the delete ID input
+
+      console.log("Employee deleted:", response.data); // Log the response from backend
+
+      // Optionally, update your employee list state here (if necessary)
+      // Example: setEmployees((prevEmployees) => prevEmployees.filter(employee => employee._id !== deleteId));
+
+      setDeleteId(""); // Clear input
     } catch (err) {
       console.error("Error deleting employee:", err);
     }
   };
+
   return (
     <>
       <h1>Employee Editor</h1>
