@@ -33,20 +33,20 @@ export default function Users() {
     ]);
     setShowEditor(false); // Close the editor after adding user
   };
-  
+
   return (
     <div>
-      {showEditor && (
+      {showEditor ? (
         <UserEditor
-          onClose={() => setShowEditor(false)} // Pass the function to close the editor
-          onAddUser={addUser} // Pass the function to add the user
+          onClose={() => setShowEditor(false)} // Close editor
+          onAddUser={addUser} // Add user
+        />
+      ) : (
+        <UserList
+          items={users} // Pass the users array to UserList
+          onShowEditor={() => setShowEditor(true)} // Show editor when Add User is clicked
         />
       )}
-
-      <UserList
-        items={users} // Pass the users array to UserList
-        onShowEditor={() => setShowEditor(true)} // Show the editor when Add User is clicked
-      />
     </div>
   );
 }

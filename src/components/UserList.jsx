@@ -20,10 +20,10 @@ export default function UserList({items, onShowEditor}) {
           {items.map((user, index) => {
             return (
               <tr key={index}>
-                <td>{user.name}</td>
+                <td>{user.firstName} {user.lastName}</td>
                 <td>{user.email}</td>
                 <td>{user.password}</td>
-                <td>{user.location}</td>
+                <td>{`${user.location.city}, ${user.location.country}`}</td>
               </tr>
             );
           })}

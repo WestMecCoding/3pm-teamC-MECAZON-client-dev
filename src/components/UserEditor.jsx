@@ -4,12 +4,12 @@ export default function UserEditor({ onClose, onAddUser }) {
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
-    // location: {
-    //   country: "",
-    //   city: "",
-    //   address: "",
-    //   zipCode: "",
-    // },
+    location: {
+      country: "",
+      city: "",
+      address: "",
+      zipCode: "",
+    },
     email: "",
     phoneNumber: "",
     password: "",
@@ -19,14 +19,31 @@ export default function UserEditor({ onClose, onAddUser }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    if (name.startsWith("location")) {
+      const field = name.split(".")[1]; // Extract field (country, city, etc.)
+      setUserData((prevData) => ({
+        ...prevData,
+        location: {
+          ...prevData.location,
+          [field]: value, // Update specific field of location object
+        },
+      }));
+    } else {
+      setUserData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
+
   // Submit Logic
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!userData.firstName || !userData.lastName || !userData.email) {
+      alert("Please fill in all required fields.");
+      return;
+    }
     onAddUser(userData); // Send user data to parent component
   };
 
@@ -62,11 +79,33 @@ export default function UserEditor({ onClose, onAddUser }) {
           value={userData.password}
           onChange={handleChange}
         />
-        <label htmlFor="location">Location:</label>
+        <h3>Location</h3>
+        <label htmlFor="location.country">Country:</label>
         <input
           type="text"
-          name="location"
-          value={userData.location}
+          name="location.country"
+          value={userData.location.country}
+          onChange={handleChange}
+        />
+        <label htmlFor="location.city">City:</label>
+        <input
+          type="text"
+          name="location.city"
+          value={userData.location.city}
+          onChange={handleChange}
+        />
+        <label htmlFor="location.address">Address:</label>
+        <input
+          type="text"
+          name="location.address"
+          value={userData.location.address}
+          onChange={handleChange}
+        />
+        <label htmlFor="location.zipCode">Zip Code:</label>
+        <input
+          type="text"
+          name="location.zipCode"
+          value={userData.location.zipCode}
           onChange={handleChange}
         />
         <button type="submit">Add User</button>
